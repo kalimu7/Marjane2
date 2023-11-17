@@ -14,8 +14,8 @@ public class AdminGeneral {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdAG;
 
-    @Column(name = "Email", unique = true)
-    private String Email;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @Column (name = "Password")
     private String Password;

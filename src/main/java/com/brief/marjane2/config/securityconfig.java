@@ -39,7 +39,9 @@ public class securityconfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(ar->ar.requestMatchers("/test").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/login").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/testlogin").permitAll())
+
                 .authorizeHttpRequests( auth -> auth
                         .anyRequest().authenticated()
                 )
@@ -58,30 +60,32 @@ public class securityconfig {
                 User.withUsername("karim").password("{noop}karim").authorities("adminGenerale").build(),
                 User.withUsername("ahmed").password("{noop}password").authorities("adminCentre").build(),
                 User.withUsername("kamal").password("{noop}password").authorities("ResponsableRayon").build()
+
         );
     }
 
-    @Bean
+
+    /*@Bean
     public PasswordEncoder PasswordEncoder(){
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
 
 
     @Bean
     JwtEncoder jwtEncoder() {
-        String key = "9faa372517ac1d389758d3750fc07acf00f542277f26fec1ce4593e93f64e338";
-        return new NimbusJwtEncoder(new ImmutableSecret<>(key.getBytes()));
+        return new NimbusJwtEncoder(new ImmutableSecret<>(this.jwtKey.getBytes()));
     }
 
 
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        String Key = "9faa372517ac1d389758d3750fc07acf00f542277f26fec1ce4593e93f64e338";
-        byte[] bytes = Key.getBytes();
+        byte[] bytes = this.jwtKey.getBytes();
         SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
         return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
     }
+
+
 
 }

@@ -4,6 +4,9 @@ import com.brief.marjane2.entity.AdminGeneral;
 import com.brief.marjane2.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
@@ -23,6 +26,8 @@ public class AuthController {
     private AdminService adminService;
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
     public AuthController(AdminService adminService){
         this.adminService = adminService;
     }
@@ -31,7 +36,10 @@ public class AuthController {
     @Autowired
     private JwtEncoder jwtencoder;
 
-
+    @GetMapping("/profile")
+    public Authentication authentication(Authentication authentication){
+        return authentication;
+    }
 
     /*public AuthController(JwtEncoder jwtEncoder){
         this.jwtencoder = jwtEncoder;
@@ -62,8 +70,10 @@ public class AuthController {
     }
 
     @PostMapping("/auth/login")
-    public Map<String,String> login(String username,String password){
-        Authentication authentication = null;
+    public Map<String,String> login(@RequestBody AdminGeneral adminGeneral){
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                adminGeneral.getEmail(),adminGeneral.getPassword()
+        ));
         Map<String,String> idToken = new HashMap<>();
         Instant instant = Instant.now();
         String roles = authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(" "));
@@ -88,14 +98,15 @@ public class AuthController {
 
     @PostMapping("/login")
     @ResponseBody
-    public AdminGeneral login(@RequestBody AdminGeneral adminGeneral){
+    public AdminGeneral loginn(@RequestBody AdminGeneral adminGeneral){
 
         return this.adminService.login(adminGeneral.getEmail());
         //return email;
 
     }
     @GetMapping("/testlogin")
-    public AdminGeneral login(){
+    @PreAuthorize("hasAuthority('adminGenerale')")
+    public AdminGeneral logins(){
         return this.adminService.login("karim");
     }
 

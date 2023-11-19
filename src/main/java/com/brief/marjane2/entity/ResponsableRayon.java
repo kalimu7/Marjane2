@@ -14,8 +14,8 @@ public class ResponsableRayon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdRR;
 
-    @Column(name = "Email", unique = true)
-    private String Email;
+    @Column(name = "email", unique = true)
+    private String email;
 
     @Column (name = "Password")
     private String Password;

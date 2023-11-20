@@ -2,37 +2,35 @@ package  com.brief.marjane2.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table (name = "Category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int IdC;
+    private int idC;
 
+    @NonNull
     @Column(name = "Titre")
     private String Titre;
 
+    @NonNull
     @Column(name = "Description")
-    private String Image;
+    private String description;
 
-    @OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
-    private List<Product> product;
-
-
+    @NonNull
     @OneToOne(mappedBy = "category",fetch = FetchType.EAGER)
     private Promotion promotion;
 
+    @OneToMany(mappedBy = "category")
+    private List<Product> product;
 
 
 }

@@ -2,35 +2,39 @@ package  com.brief.marjane2.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Entity
 @Table (name = "Product")
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdP;
 
     @Column(name = "Titre")
+    @NonNull
     private String Titre;
 
     @Column(name = "Prix")
+    @NonNull
     private float Prix;
 
     @Column(name = "Image")
+    @NonNull
     private String Image;
 
     @Column(name = "Description")
+    @NonNull
     private String Description;
 
     @ManyToOne
-    @JoinColumn(name = "IdCategory",referencedColumnName = "IdC")
+    @NonNull
+    @JoinColumn(name = "IdCategory",referencedColumnName = "idC")
     private Category category;
+
 }

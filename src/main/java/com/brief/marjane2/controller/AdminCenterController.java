@@ -2,8 +2,7 @@ package com.brief.marjane2.controller;
 
 
 import com.brief.marjane2.entity.AdminCentre;
-import com.brief.marjane2.repository.AdminCenterRepository;
-import com.brief.marjane2.service.adminCenterService;
+import com.brief.marjane2.service.AdminCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +13,10 @@ import java.util.Optional;
 @RequestMapping("/Center")
 public class AdminCenterController {
 
-    private final adminCenterService adminCenterService;
+    private final AdminCenterService adminCenterService;
 
     @Autowired
-    public AdminCenterController(adminCenterService adminCenterService) {
+    public AdminCenterController(AdminCenterService adminCenterService) {
         this.adminCenterService = adminCenterService;
     }
 

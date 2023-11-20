@@ -2,7 +2,6 @@ package com.brief.marjane2.service;
 
 import com.brief.marjane2.entity.AdminCentre;
 import com.brief.marjane2.repository.AdminCenterRepository;
-import org.bouncycastle.crypto.generators.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class adminCenterService {
+public class AdminCenterService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;

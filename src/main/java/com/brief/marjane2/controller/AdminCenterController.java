@@ -4,6 +4,7 @@ package com.brief.marjane2.controller;
 import com.brief.marjane2.entity.AdminCentre;
 import com.brief.marjane2.service.AdminCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class AdminCenterController {
      */
 
     @PostMapping("/admin")
-    public void create(@RequestBody AdminCentre adminCentre){
-        this.adminCenterService.create(adminCentre);
+    public ResponseEntity create(@RequestBody AdminCentre adminCentre){
+        return this.adminCenterService.create(adminCentre);
     }
     @GetMapping("/admin")
     public List<AdminCentre> fetchAll(){
@@ -39,13 +40,13 @@ public class AdminCenterController {
     }
 
     @PutMapping("admin")
-    public void update(@RequestBody AdminCentre adminCentre){
-        this.adminCenterService.Update(adminCentre);
+    public ResponseEntity update(@RequestBody AdminCentre adminCentre){
+        return this.adminCenterService.Update(adminCentre);
     }
 
     @DeleteMapping("admin")
-    public void delete(@RequestBody AdminCentre adminCentre){
-        this.adminCenterService.delete(adminCentre);
+    public ResponseEntity delete(@RequestBody AdminCentre adminCentre){
+        return this.adminCenterService.delete(adminCentre);
     }
 
 

@@ -3,6 +3,8 @@ package com.brief.marjane2.service;
 import com.brief.marjane2.entity.AdminCentre;
 import com.brief.marjane2.repository.AdminCenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,9 @@ public class AdminCenterService {
 
     @Autowired
     private AdminCenterRepository adminCenterRepository;
-    public void  create(AdminCentre adminCentre){
+    public ResponseEntity create(AdminCentre adminCentre){
             adminCentre.setPassword(passwordEncoder.encode(adminCentre.getPassword()));
-            adminCenterRepository.save(adminCentre);
+            return ResponseEntity.ok(adminCenterRepository.save(adminCentre));
 
     }
 
@@ -31,12 +33,23 @@ public class AdminCenterService {
         return adminCenterRepository.findById(id);
     }
 
-    public void Update(AdminCentre adminCentre1){
-         AdminCentre adminCentre =  adminCenterRepository.save(adminCentre1);
+    public ResponseEntity<String> Update(AdminCentre adminCentre1){
+        try {
+            adminCenterRepository.save(adminCentre1);
+            return new ResponseEntity<>("updated",HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("not updated",HttpStatus.BAD_REQUEST);
+        }
     }
 
-    public void delete(AdminCentre adminCentre){
-        adminCenterRepository.delete(adminCentre);
+    public ResponseEntity<String> delete(AdminCentre adminCentre){
+        try{
+            adminCenterRepository.delete(adminCentre);
+            return new ResponseEntity<>("deleted",HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("not deleted",HttpStatus.BAD_REQUEST);
+        }
+
     }
 
 }

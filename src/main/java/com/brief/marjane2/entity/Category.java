@@ -1,6 +1,8 @@
 package  com.brief.marjane2.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,6 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @Entity
 @Table (name = "Category")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "idC")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

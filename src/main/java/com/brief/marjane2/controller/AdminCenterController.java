@@ -2,6 +2,7 @@ package com.brief.marjane2.controller;
 
 
 import com.brief.marjane2.entity.AdminCentre;
+import com.brief.marjane2.entity.Promotion;
 import com.brief.marjane2.service.AdminCenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +48,12 @@ public class AdminCenterController {
     @DeleteMapping("admin")
     public ResponseEntity delete(@RequestBody AdminCentre adminCentre){
         return this.adminCenterService.delete(adminCentre);
+    }
+
+    @PostMapping("/promtion")
+    public ResponseEntity createPromotion(Promotion promotion){
+
+
     }
 
 

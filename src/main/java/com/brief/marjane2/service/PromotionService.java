@@ -14,11 +14,11 @@ public class PromotionService {
     @Autowired
     private PromotionRespository promotionRespository;
 
-    public ResponseEntity create(Promotion promotion){
+    public ResponseEntity<Promotion> create(Promotion promotion){
         try{
             return ResponseEntity.ok( promotionRespository.save(promotion));
         }catch (Exception e){
-            return new ResponseEntity<>("not created", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
 

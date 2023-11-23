@@ -4,10 +4,12 @@ package com.brief.marjane2.controller;
 import com.brief.marjane2.entity.AdminCentre;
 import com.brief.marjane2.entity.Promotion;
 import com.brief.marjane2.service.AdminCenterService;
+import com.brief.marjane2.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +17,15 @@ import java.util.Optional;
 @RequestMapping("/Center")
 public class AdminCenterController {
 
+
     private final AdminCenterService adminCenterService;
 
     @Autowired
+    private  PromotionService promotionService;
+
+    @Autowired
     public AdminCenterController(AdminCenterService adminCenterService) {
+
         this.adminCenterService = adminCenterService;
     }
 
@@ -50,9 +57,11 @@ public class AdminCenterController {
         return this.adminCenterService.delete(adminCentre);
     }
 
-    @PostMapping("/promtion")
-    public ResponseEntity createPromotion(Promotion promotion){
+    @PostMapping("/promotion")
+    public ResponseEntity createPromotion(@RequestBody Promotion promotion){
 
+
+        return promotionService.create(promotion);
 
     }
 

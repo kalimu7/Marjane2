@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ResponsableRayonRepository extends JpaRepository<ResponsableRayon,Integer> {
 
-
+    //ResponsableRayon FindByEmail(String email);
 
 }

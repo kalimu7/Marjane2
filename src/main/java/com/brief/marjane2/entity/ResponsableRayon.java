@@ -1,5 +1,6 @@
 package  com.brief.marjane2.entity;
 
+import com.brief.marjane2.enums.category;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,4 +20,9 @@ public class ResponsableRayon {
 
     @Column (name = "Password")
     private String Password;
+
+    @Enumerated(EnumType.STRING)
+    private category category;
+
+
 }

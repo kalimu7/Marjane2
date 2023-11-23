@@ -2,13 +2,15 @@ package  com.brief.marjane2.entity;
 
 
 import com.brief.marjane2.entity.Category;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.marjane.enums.status;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,21 +19,30 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table (name = "Promotion")
+//@JsonIgnoreProperties({"category"})
+
 public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NonNull
     private int IdPr;
 
-    @Column(name = "DateDebut")
-    private LocalDateTime DateDebut;
+    @Column(name = "dateDebut")
+    @NonNull
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate dateDebut;
 
-    @Column(name = "DateFin")
-    private LocalDateTime DateFin;
+    @Column(name = "dateFin")
+    @NonNull
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
+    @NonNull
     private status status;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category",referencedColumnName = "IdC")
+    @NonNull
     private Category category;
 }

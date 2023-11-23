@@ -14,6 +14,8 @@ import java.util.Optional;
 @Service
 public class AdminCenterService {
 
+
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -35,6 +37,7 @@ public class AdminCenterService {
 
     public ResponseEntity<String> Update(AdminCentre adminCentre1){
         try {
+            adminCentre1.setPassword(passwordEncoder.encode(adminCentre1.getPassword()));
             adminCenterRepository.save(adminCentre1);
             return new ResponseEntity<>("updated",HttpStatus.OK);
         }catch (Exception e){

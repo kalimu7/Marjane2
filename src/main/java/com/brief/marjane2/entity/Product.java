@@ -37,6 +37,11 @@ public class Product {
     @NonNull
     private String Description;
 
+    @Column(name = "quantite")
+    @NonNull
+    private Integer quantite;
+
+
     @ManyToOne
     @NonNull
     @JoinColumn(name = "IdCategory",referencedColumnName = "idC")

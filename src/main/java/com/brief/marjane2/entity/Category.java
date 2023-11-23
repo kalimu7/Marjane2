@@ -1,6 +1,7 @@
 package  com.brief.marjane2.entity;
 
 
+import com.brief.marjane2.enums.category;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -22,20 +23,21 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idC;
 
-    @NonNull
-    @Column(name = "Titre")
-    private String Titre;
+    @Enumerated(EnumType.STRING)
+    private category titre;
 
-    @NonNull
     @Column(name = "Description")
+    @NonNull
     private String description;
 
+    @OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
     @NonNull
-    @OneToOne(mappedBy = "category",fetch = FetchType.EAGER)
-    private Promotion promotion;
+    private List<Promotion> promotion;
 
     @OneToMany(mappedBy = "category")
     private List<Product> product;
+
+
 
 
 }

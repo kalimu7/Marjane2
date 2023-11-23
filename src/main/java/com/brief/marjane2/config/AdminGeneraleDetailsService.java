@@ -26,7 +26,7 @@ public class AdminGeneraleDetailsService implements UserDetailsService {
         if(adminGeneral == null){
             throw new UsernameNotFoundException("no user with these credentials");
         }
-        UserDetails user = User.withUsername(adminGeneral.getEmail()).password(adminGeneral.getPassword()).authorities("adminGenerale").build();
+        UserDetails user = User.withUsername(adminGeneral.getEmail()).password(adminGeneral.getPassword()).authorities("ROLE_adminGenerale").build();
         return user;
     }
 

@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.*;
@@ -38,6 +38,9 @@ public class AuthController {
 
     @GetMapping("/profile")
     public Authentication authentication(Authentication authentication){
+
+        System.out.println(authentication.getAuthorities());
+
         return authentication;
     }
 
@@ -55,7 +58,7 @@ public class AuthController {
                 .subject(authentication.getName())
                 .issuedAt(instant)
                 .expiresAt(instant.plus(5, ChronoUnit.MINUTES))
-                .issuer("security-service")
+                .issuer("spring-system")
                 .claim("role",roles)
                 .build();
         JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters.from(
@@ -81,7 +84,7 @@ public class AuthController {
                 .subject(authentication.getName())
                 .issuedAt(instant)
                 .expiresAt(instant.plus(5, ChronoUnit.MINUTES))
-                .issuer("security-service")
+                .issuer("https://your-issuer-domain.com")
                 .claim("role",roles)
                 .build();
         JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters.from(

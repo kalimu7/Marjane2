@@ -39,7 +39,7 @@ public class Promotion {
 
     @Enumerated(EnumType.STRING)
     @NonNull
-    private status status;
+    private status status ;
 
     @ManyToOne
     @JoinColumn(name = "category",referencedColumnName = "IdC")

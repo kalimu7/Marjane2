@@ -5,6 +5,7 @@ import com.brief.marjane2.entity.Product;
 import com.brief.marjane2.entity.Promotion;
 import com.brief.marjane2.entity.ResponsableRayon;
 import com.brief.marjane2.enums.category;
+import com.brief.marjane2.observer.PromotionManager;
 import com.brief.marjane2.repository.CategoryRepository;
 import com.brief.marjane2.repository.ProductRepository;
 import com.brief.marjane2.repository.PromotionRespository;
@@ -23,6 +24,8 @@ import java.util.List;
 
 @Service
 public class ResponsableRayonService {
+
+
 
     @Autowired
     private PasswordEncoder passwordEncoder;

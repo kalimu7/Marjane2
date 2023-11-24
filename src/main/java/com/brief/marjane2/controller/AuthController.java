@@ -40,8 +40,8 @@ public class AuthController {
     public Authentication authentication(Authentication authentication){
 
         System.out.println(authentication.getAuthorities());
-
         return authentication;
+
     }
 
     /*public AuthController(JwtEncoder jwtEncoder){
@@ -87,6 +87,7 @@ public class AuthController {
                 .issuer("https://your-issuer-domain.com")
                 .claim("role",roles)
                 .build();
+
         JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters.from(
                 JwsHeader.with(MacAlgorithm.HS512).build(),jwtClaimsSet
         );
@@ -112,9 +113,6 @@ public class AuthController {
     public AdminGeneral logins(){
         return this.adminService.login("karim");
     }
-
-
-
 
 
 }

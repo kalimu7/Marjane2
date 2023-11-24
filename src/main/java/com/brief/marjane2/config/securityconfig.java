@@ -54,7 +54,9 @@ public class securityconfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(ar->ar.requestMatchers("/Center/**").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/Responsable/**").permitAll())
-                .authorizeHttpRequests(ar->ar.requestMatchers("/test").hasAuthority("adminGenerale"))
+                .authorizeHttpRequests(ar->ar.requestMatchers("/Caissier/**").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/Client/**").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/test").hasAuthority("ROLE_adminGenerale"))
                 .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/profile").authenticated())
 
@@ -62,6 +64,7 @@ public class securityconfig {
                         .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(withDefaults()))
+
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(withDefaults())
                 .build();
@@ -74,7 +77,7 @@ public class securityconfig {
     private AdminCenterDetailsService adminCenterDetailsService;
     */
     @Bean
-    public AuthenticationManager authenticationManager(@Qualifier("adminGeneraleDetailsService") UserDetailsService userDetailsService) {
+    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) {
             DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
             daoAuthenticationProvider.setPasswordEncoder(PasswordEncoder());
             daoAuthenticationProvider.setUserDetailsService(userDetailsService);
@@ -111,8 +114,8 @@ public class securityconfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        byte[] bytes = this.jwtKey.getBytes();
-        SecretKeySpec originalKey = new SecretKeySpec(bytes, 0, bytes.length,"RSA");
+
+        SecretKeySpec originalKey = new SecretKeySpec(this.jwtKey.getBytes(), "RSA");
         return NimbusJwtDecoder.withSecretKey(originalKey).macAlgorithm(MacAlgorithm.HS512).build();
     }
 

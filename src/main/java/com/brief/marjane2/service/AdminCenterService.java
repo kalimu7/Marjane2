@@ -1,6 +1,7 @@
 package com.brief.marjane2.service;
 
 import com.brief.marjane2.entity.AdminCentre;
+import com.brief.marjane2.observer.PromotionManager;
 import com.brief.marjane2.repository.AdminCenterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,8 @@ import java.util.Optional;
 
 @Service
 public class AdminCenterService {
+
+
 
 
 

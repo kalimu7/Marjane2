@@ -1,52 +1,38 @@
 package com.brief.marjane2.observer;
 
 import com.brief.marjane2.entity.ResponsableRayon;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PromotionManager  {
+public class PromotionManager implements Publisher {
 
-    @Autowired
-    private EmailListener logginListener;
+    List<Observer> observers = new ArrayList<>();
 
-
-
-
-    private List<ResponsableRayon> responsableRayonList = new ArrayList<>();
-
-
-    public PromotionManager(){
-        ResponsableRayon responsableRayon = new ResponsableRayon();
-        responsableRayon.setEmail("karim");
-        responsableRayonList.add(responsableRayon);
-        ResponsableRayon responsableRayon1 = new ResponsableRayon();
-        responsableRayon1.setEmail("salah");
-        responsableRayonList.add(responsableRayon1);
-
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
-    public void Subscribe(ResponsableRayon responsableRayon){
-        responsableRayonList.add(responsableRayon);
-
-    }
-    public void unSubscribe(ResponsableRayon responsableRayon){
-        responsableRayonList.remove(responsableRayon);
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
     }
 
-    public void notifyResponsable(){
-        for (ResponsableRayon resp : responsableRayonList ) {
-           logginListener.Update(resp.getEmail());
+    @Override
+    public void notifyObservers(String message) {
+
+
+
+        for (Observer obs : observers){
+            if(obs instanceof ResponsableRayon){
+
+                obs.update(message,((ResponsableRayon) obs).getEmail());
+
+            }
+
         }
     }
-
-
-
-
-
-
 }

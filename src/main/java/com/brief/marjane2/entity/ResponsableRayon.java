@@ -1,6 +1,7 @@
 package  com.brief.marjane2.entity;
 
 import com.brief.marjane2.enums.category;
+import com.brief.marjane2.observer.Observer;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +11,10 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table (name = "ResponsableRayon")
-public class ResponsableRayon {
+public class ResponsableRayon  implements Observer{
+
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int IdRR;
@@ -24,5 +28,12 @@ public class ResponsableRayon {
     @Enumerated(EnumType.STRING)
     private category category;
 
+    @Column(name = "subscribe")
+    private boolean subscribe;
 
+
+    @Override
+    public void update(String message, String email) {
+        System.out.println(message  +  " and recieved by " + email);
+    }
 }

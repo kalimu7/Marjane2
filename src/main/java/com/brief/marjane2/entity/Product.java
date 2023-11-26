@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -46,5 +48,8 @@ public class Product {
     @NonNull
     @JoinColumn(name = "IdCategory",referencedColumnName = "idC")
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    List<Purchases> purchases;
 
 }

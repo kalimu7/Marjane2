@@ -12,7 +12,7 @@ public interface ProductMapper {
 
     ProductMapper productmapper = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(target = "idP", source = "idP")
+//    @Mapping(target = "idP", source = "idP")
     ProductDto toDto(Product product);
     Product toEntity(ProductDto productDto);
 }

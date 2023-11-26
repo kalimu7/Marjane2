@@ -59,4 +59,21 @@ public class ClientService {
 
 
     }
+
+    public CarteFidelité find(int ClinetId){
+        Optional<Client> client  = clientRepository.findById(ClinetId);
+
+        if(client.isPresent()) {
+            Client AC = client.get();
+
+            CarteFidelité carteFidelité = carteFidilteRepository.findByClient(AC);
+            carteFidelité.setAmount(carteFidelité.getAmount() + 1);
+            carteFidilteRepository.save(carteFidelité);
+            return carteFidelité;
+        }else {
+            return null;
+        }
+
+    }
+
 }

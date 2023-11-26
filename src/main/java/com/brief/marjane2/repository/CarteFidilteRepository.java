@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CarteFidilteRepository extends JpaRepository<CarteFidelité,Integer> {
 
-
+    CarteFidelité findByClient(Client clientId);
 
 }

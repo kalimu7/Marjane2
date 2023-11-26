@@ -45,4 +45,6 @@ public class Promotion {
     @JoinColumn(name = "category",referencedColumnName = "IdC")
     @NonNull
     private Category category;
+
+
 }

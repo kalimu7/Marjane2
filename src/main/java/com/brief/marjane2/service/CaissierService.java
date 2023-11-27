@@ -36,6 +36,9 @@ public class CaissierService {
     private CarteFidilteRepository carteFidilteRepository;
 
 
+
+
+
     public ResponseEntity create(Caissier caissier){
         try {
             Caissier caissier1 = caissierRepository.save(caissier);
@@ -55,6 +58,8 @@ public class CaissierService {
         );
         return productDtos;
     }
+
+
 
     public String BuyProduct(PurchaseDto purchaseDto){
         Optional<Product> product = productRepository.findById(purchaseDto.getProductid());

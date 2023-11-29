@@ -1,4 +1,4 @@
-package com.marjane.enums;
+package com.brief.marjane2.enums;
 
 public enum status {
     Validé,

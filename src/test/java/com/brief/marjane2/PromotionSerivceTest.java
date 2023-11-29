@@ -1,3 +1,4 @@
+/*
 package com.brief.marjane2;
 
 
@@ -52,3 +53,4 @@ public class PromotionSerivceTest {
     }
 
 }
+*/

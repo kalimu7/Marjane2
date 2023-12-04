@@ -6,6 +6,7 @@ import com.brief.marjane2.entity.Promotion;
 import com.brief.marjane2.service.AdminCenterService;
 import com.brief.marjane2.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,7 +60,6 @@ public class AdminCenterController {
 
     @PostMapping("/promotion")
     public ResponseEntity createPromotion(@RequestBody Promotion promotion){
-
 
         return promotionService.create(promotion);
 

@@ -28,6 +28,7 @@ public class PromotionService  {
 
     public ResponseEntity<Promotion> create(Promotion promotion){
         try{
+
             Promotion promotion1 = promotionRespository.save(promotion);
 
             List<ResponsableRayon> responsableRayonList =  responsableRayonRepository.findBySubscribe(true);

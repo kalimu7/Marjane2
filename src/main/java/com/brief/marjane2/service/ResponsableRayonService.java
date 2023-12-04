@@ -1,5 +1,6 @@
 package com.brief.marjane2.service;
 
+import com.brief.marjane2.dto.PromotionDto;
 import com.brief.marjane2.entity.Category;
 import com.brief.marjane2.entity.Product;
 import com.brief.marjane2.entity.Promotion;
@@ -11,6 +12,8 @@ import com.brief.marjane2.repository.ProductRepository;
 import com.brief.marjane2.repository.PromotionRespository;
 import com.brief.marjane2.repository.ResponsableRayonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -79,8 +82,11 @@ public class ResponsableRayonService {
 
     }
 
-    public List<Promotion> promo(){
-            return promotionRespository.findAll();
+    public Page<Promotion> promo(int page){
+        PageRequest pg = PageRequest.of(page - 1,5);
+
+        return promotionRespository.findAll(pg);
+
     }
 
     public List<Promotion> promotion(String title){

@@ -1,0 +1,26 @@
+version : "3.8"
+services:
+  server:
+    build: .
+    ports:
+      - "8000:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://posDb:5432/market
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: m
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+    depends_on:
+      - posDb
+  posDb:
+    image: "postgres:latest"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: market
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: m
+
+

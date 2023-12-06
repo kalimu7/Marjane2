@@ -110,6 +110,10 @@ public class AuthController {
         //return email;
 
     }
+    @GetMapping("/test")
+    public String tst(){
+        return "hello world";
+    }
     @GetMapping("/testlogin")
     @PreAuthorize("hasAuthority('adminGenerale')")
     public AdminGeneral logins(){

@@ -64,6 +64,7 @@ public class securityconfig {
                 .authorizeHttpRequests(ar->ar.requestMatchers("/Client/**").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/test").hasAuthority("ROLE_adminGenerale"))
                 .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/profile").authenticated())
 
                 .authorizeHttpRequests( auth -> auth

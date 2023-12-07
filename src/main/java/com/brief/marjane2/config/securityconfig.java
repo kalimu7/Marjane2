@@ -59,9 +59,10 @@ public class securityconfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(ar->ar.requestMatchers("/Center/**").permitAll())
-                .authorizeHttpRequests(ar->ar.requestMatchers("/Responsable/**").permitAll())
+                .authorizeHttpRequests(ar->ar.requestMatchers("/Responsable/**").authenticated())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/Caissier/**").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/Client/**").permitAll())
+
                 .authorizeHttpRequests(ar->ar.requestMatchers("/test").hasAuthority("ROLE_adminGenerale"))
                 .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login").permitAll())
                 .authorizeHttpRequests(ar->ar.requestMatchers("/auth/login").permitAll())

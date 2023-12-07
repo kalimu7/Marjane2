@@ -7,6 +7,7 @@ import com.brief.marjane2.service.AdminCenterService;
 import com.brief.marjane2.service.PromotionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,6 +65,19 @@ public class AdminCenterController {
         return promotionService.create(promotion);
 
     }
+
+    @GetMapping("/statistics")
+    public ResponseEntity statistics(){
+        try{
+            return ResponseEntity.ok( promotionService.statistics());
+        }catch (Exception e){
+            return new ResponseEntity<>("something wrong with statistics", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+
 
 
 }

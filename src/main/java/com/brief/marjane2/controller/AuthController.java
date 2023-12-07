@@ -58,7 +58,7 @@ public class AuthController {
         JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                 .subject(authentication.getName())
                 .issuedAt(instant)
-                .expiresAt(instant.plus(5, ChronoUnit.MINUTES))
+                .expiresAt(instant.plus(10, ChronoUnit.MINUTES))
                 .issuer("spring-system")
                 .claim("role",roles)
                 .build();
@@ -85,7 +85,7 @@ public class AuthController {
         JwtClaimsSet jwtClaimsSet = JwtClaimsSet.builder()
                 .subject(authentication.getName())
                 .issuedAt(instant)
-                .expiresAt(instant.plus(5, ChronoUnit.MINUTES))
+                .expiresAt(instant.plus(1, ChronoUnit.MINUTES))
                 .issuer("https://your-issuer-domain.com")
                 .claim("role",roles)
                 .build();
@@ -119,6 +119,7 @@ public class AuthController {
     public AdminGeneral logins(){
         return this.adminService.login("karim");
     }
+
 
 
 }
